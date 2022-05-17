@@ -6,6 +6,7 @@ const option3 = document.getElementById('option3')
 const option4 = document.getElementById('option4')
 const button = document.getElementById('submit')
 const startButton = document.getElementById('h1-button')
+const div3 = document.getElementById('div3')
 let label1 = document.querySelector('label[for="input1"]')
 let label2 = document.querySelector('label[for="input2"]')
 let label3 = document.querySelector('label[for="input3"]')
@@ -26,50 +27,63 @@ console.log(radioButtons)
 function randomCocktail() {
     fetch('https:www.thecocktaildb.com/api/json/v1/1/filter.php?c=Cocktail')
     .then(resp => resp.json())
-    .then(data => randomDrink(data))
+    .then(data => changeQuestion(data))
 }
 
-function changeQuestion() {
+function changeQuestion(data) {
     let newIndex = -1
     let questionNumber = 1
     button.addEventListener('click', (e) => {
         e.preventDefault()
-        questionNumber++
-        newIndex++
-        question.innerHTML = `${questionNumber.toString()}. ${questionArray[newIndex]}`
-        label1.innerHTML = `${option1Array[newIndex]}`
-        label2.innerHTML = `${option2Array[newIndex]}`
-        if (newIndex === 0) {
-            option4.hidden=true
-            console.log('hi')
-        }
-        if (newIndex === 1) {
-            option3.hidden=true
-        }
-        label3.innerHTML = `${option3Array[newIndex]}`
-        label4.innerHTML = `${option4Array[newIndex]}`
-        console.log(label1)
-        for (const radio of radioButtons) {
-            if (radio.checked) {
-                userAnswers.push(radio.value)
-                radio.checked = false
-                console.log(userAnswers)
+                questionNumber++
+                newIndex++
+                question.innerHTML = `${questionNumber.toString()}. ${questionArray[newIndex]}`
+                label1.innerHTML = `${option1Array[newIndex]}`
+                label2.innerHTML = `${option2Array[newIndex]}`
+                if (newIndex === 0) {
+                    option4.hidden=true
+                }
+                if (newIndex === 1) {
+                    option3.hidden=true
+                }
+                label3.innerHTML = `${option3Array[newIndex]}`
+                label4.innerHTML = `${option4Array[newIndex]}`
+                console.log(label1)
+                for (const radio of radioButtons) {
+                    if (radio.checked) {
+                        userAnswers.push(radio.value)
+                        radio.checked = false
+                        console.log(userAnswers)
+                    }
+                }
+                if (newIndex === 4) {
+                question.hidden=true
+                option1.hidden=true
+                option2.hidden=true
+                option3.hidden=true
+                option4.hidden=true
+                button.hidden=true
+                showResult(data)
             }
-        }
-        if (newIndex === 4) {
-            question.hidden=true
-            option1.hidden=true
-            option2.hidden=true
-            option3.hidden=true
-            option4.hidden=true
-            button.hidden=true
-            showResult()
-        }
     })
 }
 
-function showResult() {
-    //This will show the Drink depending on the answers along with a description
+function showResult(data) {
+    console.log(data)
+    let drinkList = []
+    let drinkArray = Object.values(data)
+    console.log(drinkArray)
+    for (const drink of drinkArray) {
+        console.log(drink)
+        for (const d of drink) {
+            console.log(d)
+            let drinkData = Object.values(d)
+            drinkList.push(drinkData)
+        }
+    }
+    let newDrinkList = [...new Set(drinkList)]
+    console.log(newDrinkList[0][0])
+    div3.innerText = newDrinkList[0][0]
 }
 
 
