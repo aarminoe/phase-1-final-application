@@ -13,10 +13,10 @@ let label4 = document.querySelector('label[for="input4"]')
 
 let userAnswers = []
 
-const questionArray = ['What day is it?',]
-const option1Array = ['Friday',]
-const option2Array = ['Saturday',]
-const option3Array = ['Sunday',]
+const questionArray = ['How stressful was your day?', 'Do you have to get up early tomorrow?', 'Are you celebrating anything?', 'What are you in the mood to do?']
+const option1Array = ['Very', 'Yes', 'Yes', 'Relax']
+const option2Array = ['Somewhat', 'No', 'No', 'Party!']
+const option3Array = ['Not at all',]
 const option4Array = ['Monday-Thursday',]
 const radioButtons = document.querySelectorAll("input[name='q1']")
 console.log(radioButtons)
@@ -31,20 +31,21 @@ function randomCocktail() {
 
 function changeQuestion() {
     let newIndex = -1
-    let newIndex2 = -1
-    let newIndex3 = -1
-    let newIndex4 = -1
     let questionNumber = 1
     button.addEventListener('click', (e) => {
         e.preventDefault()
-        console.log(button.value)
         questionNumber++
         newIndex++
-        question.innerHTML = `${questionNumber.toString()} ${questionArray[newIndex]}`
-        console.log(option1.nextSibling)
+        question.innerHTML = `${questionNumber.toString()}. ${questionArray[newIndex]}`
         label1.innerHTML = `${option1Array[newIndex]}`
-        console.log(newIndex)
         label2.innerHTML = `${option2Array[newIndex]}`
+        if (newIndex === 0) {
+            option4.hidden=true
+            console.log('hi')
+        }
+        if (newIndex === 1) {
+            option3.hidden=true
+        }
         label3.innerHTML = `${option3Array[newIndex]}`
         label4.innerHTML = `${option4Array[newIndex]}`
         console.log(label1)
