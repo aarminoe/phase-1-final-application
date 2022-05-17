@@ -11,6 +11,7 @@ function randomDrink(objArray) {
     console.log(drinkArray)
     for (const drink of drinkArray) {
         console.log(drink)
+
     }
 }
 

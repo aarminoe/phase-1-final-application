@@ -3,6 +3,7 @@
     <head>
         <link rel="stylesheet" href="style.css"/>
         <script src="index.js" defer></script>
+        <title>The Daily Drinquiry</title>
     </head>
     <body>
         <header id="header">
@@ -11,12 +12,22 @@
         <div id="div1">
             div111
         </div>
-        <form id="form">
-            <input type="text">
-            <input type="text">
-        </form>
         <h1 id="h1">h1</h1>
-        <div id="div2">div2</div>
+        <form id="form">
+            <div>
+                <p>1. How stressful was your day?</p>
+                <p><input type="radio" name="q1" value="Very Stressful">Very Stressful</p>
+                <p><input type='radio' name='q1' value='Somewhat Stressful'>Somewhat Stressful</p>
+                <p><input type='radio' name='q1' value='A Little Stressful'>A Little Stressful</p>
+                <p><input type='radio' name='q1' value='Not At All Stressful'>Not At All Stressful</p>
+                <button>Submit</button>
+            </div>
+        </form>
+        <div id="div2" class="container">
+            div2
+            <div id ='question'></div>
+        </div>
+
         <div id="div3">div3</div>
         <p id="p">p</p>
     </body>
