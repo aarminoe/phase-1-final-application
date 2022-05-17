@@ -7,6 +7,7 @@ const option4 = document.getElementById('option4')
 const button = document.getElementById('submit')
 const startButton = document.getElementById('h1-button')
 const div3 = document.getElementById('div3')
+const p = document.getElementById('p')
 let label1 = document.querySelector('label[for="input1"]')
 let label2 = document.querySelector('label[for="input2"]')
 let label3 = document.querySelector('label[for="input3"]')
@@ -84,6 +85,9 @@ function showResult(data) {
     let newDrinkList = [...new Set(drinkList)]
     console.log(newDrinkList[0][0])
     div3.innerText = newDrinkList[0][0]
+    let drinkImage = document.createElement('img')
+    drinkImage.src = newDrinkList[0][1]
+    p.appendChild(drinkImage)
 }
 
 
