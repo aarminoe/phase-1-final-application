@@ -6,6 +6,11 @@ const option3 = document.getElementById('option3')
 const option4 = document.getElementById('option4')
 const button = document.getElementById('submit')
 const startButton = document.getElementById('h1-button')
+let label1 = document.querySelector('label[for="input1"]')
+let label2 = document.querySelector('label[for="input2"]')
+let label3 = document.querySelector('label[for="input3"]')
+let label4 = document.querySelector('label[for="input4"]')
+
 let userAnswers = []
 
 const questionArray = ['What day is it?',]
@@ -26,12 +31,23 @@ function randomCocktail() {
 
 function changeQuestion() {
     let newIndex = -1
+    let newIndex2 = -1
+    let newIndex3 = -1
+    let newIndex4 = -1
     let questionNumber = 1
     button.addEventListener('click', (e) => {
         e.preventDefault()
         console.log(button.value)
         questionNumber++
-        question.innerHTML = `${questionNumber.toString()} ${questionArray[newIndex +=1]}`
+        newIndex++
+        question.innerHTML = `${questionNumber.toString()} ${questionArray[newIndex]}`
+        console.log(option1.nextSibling)
+        label1.innerHTML = `${option1Array[newIndex]}`
+        console.log(newIndex)
+        label2.innerHTML = `${option2Array[newIndex]}`
+        label3.innerHTML = `${option3Array[newIndex]}`
+        label4.innerHTML = `${option4Array[newIndex]}`
+        console.log(label1)
         for (const radio of radioButtons) {
             if (radio.checked) {
                 userAnswers.push(radio.value)
@@ -46,8 +62,8 @@ function changeQuestion() {
             option3.hidden=true
             option4.hidden=true
             button.hidden=true
+            showResult()
         }
-        showResult()
     })
 }
 
