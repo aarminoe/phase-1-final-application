@@ -5,6 +5,7 @@ const option2 = document.getElementById('option2')
 const option3 = document.getElementById('option3')
 const option4 = document.getElementById('option4')
 const button = document.getElementById('submit')
+const startButton = document.getElementById('h1-button')
 let userAnswers = []
 
 const questionArray = ['What day is it?',]
@@ -14,6 +15,9 @@ const option3Array = ['Sunday',]
 const option4Array = ['Monday-Thursday',]
 const radioButtons = document.querySelectorAll("input[name='q1']")
 console.log(radioButtons)
+
+
+
 function randomCocktail() {
     fetch('https:www.thecocktaildb.com/api/json/v1/1/filter.php?c=Cocktail')
     .then(resp => resp.json())
@@ -62,5 +66,20 @@ function randomDrink(objArray) {
 }
 
 
+function startQuiz() {
+    startButton.addEventListener('click', () => {
+        question.hidden=false
+        option1.hidden=false
+        option2.hidden=false
+        option3.hidden=false
+        option4.hidden=false
+        button.hidden=false
+        startButton.hidden=true
+    })
+}
+
+
+
 randomCocktail()
 changeQuestion()
+startQuiz()
