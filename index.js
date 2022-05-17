@@ -5,13 +5,15 @@ const option2 = document.getElementById('option2')
 const option3 = document.getElementById('option3')
 const option4 = document.getElementById('option4')
 const button = document.getElementById('submit')
+let userAnswers = []
 
 const questionArray = ['What day is it?',]
 const option1Array = ['Friday',]
 const option2Array = ['Saturday',]
 const option3Array = ['Sunday',]
 const option4Array = ['Monday-Thursday',]
-
+const radioButtons = document.querySelectorAll("input[name='q1']")
+console.log(radioButtons)
 function randomCocktail() {
     fetch('https:www.thecocktaildb.com/api/json/v1/1/filter.php?c=Cocktail')
     .then(resp => resp.json())
@@ -26,6 +28,13 @@ function changeQuestion() {
         console.log(button.value)
         questionNumber++
         question.innerHTML = `${questionNumber.toString()} ${questionArray[newIndex +=1]}`
+        for (const radio of radioButtons) {
+            if (radio.checked) {
+                userAnswers.push(radio.value)
+                radio.checked = false
+                console.log(userAnswers)
+            }
+        }
         if (newIndex === 4) {
             question.hidden=true
             option1.hidden=true
