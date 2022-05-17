@@ -19,11 +19,27 @@ function randomCocktail() {
 }
 
 function changeQuestion() {
+    let newIndex = -1
+    let questionNumber = 1
     button.addEventListener('click', (e) => {
         e.preventDefault()
-        let newIndex = -1
-        question.innerHTML = `2. ${questionArray[newIndex +=1]}`
+        console.log(button.value)
+        questionNumber++
+        question.innerHTML = `${questionNumber.toString()} ${questionArray[newIndex +=1]}`
+        if (newIndex === 4) {
+            question.hidden=true
+            option1.hidden=true
+            option2.hidden=true
+            option3.hidden=true
+            option4.hidden=true
+            button.hidden=true
+        }
+        showResult()
     })
+}
+
+function showResult() {
+    //This will show the Drink depending on the answers along with a description
 }
 
 

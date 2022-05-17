@@ -2,6 +2,13 @@ html {
     background-color: bisque;
 }
 
+header {
+    font-size: 12ch;
+    font-weight: bolder;
+    background-color: brown;
+    height: 150px;
+}
+
 body {
     text-align: center;
     font-family: Georgia, 'Times New Roman', Times, serif;
@@ -9,6 +16,7 @@ body {
 
 h1 {
     font-size: 8ch;
+    
 }
 
 div {
@@ -22,3 +30,10 @@ button {
     width: 10ch;
     background-color: rgb(200, 191, 165);
 }
+
+#div1 {
+    font-size: 4ch;
+    padding-top: 50px;
+    font-weight: bolder;
+}
+
