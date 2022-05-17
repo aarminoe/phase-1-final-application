@@ -8,6 +8,7 @@ const button = document.getElementById('submit')
 const startButton = document.getElementById('h1-button')
 const div3 = document.getElementById('div3')
 const p = document.getElementById('p')
+let errorMessage = document.getElementById('error')
 let label1 = document.querySelector('label[for="input1"]')
 let label2 = document.querySelector('label[for="input2"]')
 let label3 = document.querySelector('label[for="input3"]')
@@ -36,28 +37,30 @@ function changeQuestion(data) {
     let questionNumber = 1
     button.addEventListener('click', (e) => {
         e.preventDefault()
-                questionNumber++
-                newIndex++
-                question.innerHTML = `${questionNumber.toString()}. ${questionArray[newIndex]}`
-                label1.innerHTML = `${option1Array[newIndex]}`
-                label2.innerHTML = `${option2Array[newIndex]}`
-                if (newIndex === 0) {
-                    option4.hidden=true
+        radioCheck()
+        if (radioCheck()) {
+            errorMessage.hidden=true
+            questionNumber++
+            newIndex++
+            question.innerHTML = `${questionNumber.toString()}. ${questionArray[newIndex]}`
+            label1.innerHTML = `${option1Array[newIndex]}`
+            label2.innerHTML = `${option2Array[newIndex]}`
+            if (newIndex === 0) {
+                option4.hidden=true
+            }
+            if (newIndex === 1) {
+                option3.hidden=true
+            }
+            label3.innerHTML = `${option3Array[newIndex]}`
+            label4.innerHTML = `${option4Array[newIndex]}`
+            for (const radio of radioButtons) {
+                if (radio.checked) {
+                    userAnswers.push(radio.value)
+                    radio.checked = false
+                    console.log(userAnswers)
                 }
-                if (newIndex === 1) {
-                    option3.hidden=true
-                }
-                label3.innerHTML = `${option3Array[newIndex]}`
-                label4.innerHTML = `${option4Array[newIndex]}`
-                console.log(label1)
-                for (const radio of radioButtons) {
-                    if (radio.checked) {
-                        userAnswers.push(radio.value)
-                        radio.checked = false
-                        console.log(userAnswers)
-                    }
-                }
-                if (newIndex === 4) {
+            }
+            if (newIndex >= 4) {
                 question.hidden=true
                 option1.hidden=true
                 option2.hidden=true
@@ -66,7 +69,22 @@ function changeQuestion(data) {
                 button.hidden=true
                 showResult(data)
             }
-    })
+            }
+        else {
+            errorMessage.innerText = 'Please remember to pick an answer!'
+            if (errorMessage.hidden === true) {
+                errorMessage.hidden=false
+            }
+        }
+            })
+}
+
+function radioCheck() {
+    for (const radio of radioButtons) {
+        if (radio.checked) {
+            return true
+        }
+    }
 }
 
 function showResult(data) {
@@ -91,15 +109,6 @@ function showResult(data) {
 }
 
 
-function randomDrink(objArray) {
-    drinkArray = Object.values(objArray)
-    console.log(drinkArray)
-    for (const drink of drinkArray) {
-        console.log(drink)
-        
-    }
-}
-
 
 function startQuiz() {
     startButton.addEventListener('click', () => {
@@ -116,5 +125,4 @@ function startQuiz() {
 
 
 randomCocktail()
-changeQuestion()
 startQuiz()

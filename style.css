@@ -42,3 +42,6 @@ button:hover {
     font-weight: bolder;
 }
 
+p.error {
+    color: rgb(189, 51, 51);
+}
