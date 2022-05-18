@@ -18,8 +18,6 @@ const option3Array = ['Not at all',]
 const option4Array = ['Monday-Thursday',]
 const radioButtons = document.querySelectorAll("input[name='q1']")
 let userAnswers = []
-console.log(radioButtons)
-
 
 
 function randomCocktail() {
@@ -29,6 +27,7 @@ function randomCocktail() {
 }
 
 function changeQuestion(data) {
+    console.log(data)
     let newIndex = -1
     let questionNumber = 1
     button.addEventListener('click', (e) => {
@@ -81,9 +80,9 @@ function radioCheck() {
 
 function showResult(data, answersArray) {
     let drinkList = []
+    let drinkIds = []
     let drinkArray = Object.values(data)
     for (const drink of drinkArray) {
-        console.log(drink)
         for (const d of drink) {
             let drinkData = Object.values(d)
             drinkList.push(drinkData)
@@ -91,10 +90,13 @@ function showResult(data, answersArray) {
     }
     let newDrinkList = [...new Set(drinkList)]
     let finalDrinkList = newDrinkList.slice(76)
-    console.log(finalDrinkList)
-    for (const drink of finalDrinkList) {
-    }
     console.log(answersArray)
+    let drinkDescriptions = []
+    console.log(drinkDescriptions)
+
+    
+    
+    
     let drinkImage = document.createElement('img')
     if (answersArray[4] === '2') {
         div3.innerText = finalDrinkList[21][0]
@@ -109,10 +111,31 @@ function showResult(data, answersArray) {
         div3.innerText = finalDrinkList[randomDrink][0]
         drinkImage.src = finalDrinkList[randomDrink][1]
     }
+    console.log('div 3 ' + div3.innerText)
+ 
+    let obj = []
+    for (const drink of finalDrinkList) {
+        fetch(`https:www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${drink[2]}`)
+        .then(resp => resp.json())
+        .then((details) => {
+            for (const detail of Object.values(details)){
+                for (const d of detail) {
+                    console.log(d)
+                    console.log(d.strDrink)
+                    if (d.strDrink === 'Mojito') {
+                        console.log('Yes!')
+                        let description = document.createElement('p')
+                        description.innerText = d.strInstructions
+                        p.appendChild(description)
+                    }
+                }
+
+            }
+        })
+    }
+    console.log(obj)
     p.appendChild(drinkImage)
 }
-
-
 
 function startQuiz() {
     startButton.addEventListener('click', () => {
