@@ -80,7 +80,6 @@ function radioCheck() {
 
 function showResult(data, answersArray) {
     let drinkList = []
-    let drinkIds = []
     let drinkArray = Object.values(data)
     for (const drink of drinkArray) {
         for (const d of drink) {
@@ -93,10 +92,6 @@ function showResult(data, answersArray) {
     console.log(answersArray)
     let drinkDescriptions = []
     console.log(drinkDescriptions)
-
-    
-    
-    
     let drinkImage = document.createElement('img')
     if (answersArray[4] === '2') {
         div3.innerText = finalDrinkList[21][0]
@@ -111,30 +106,7 @@ function showResult(data, answersArray) {
         div3.innerText = finalDrinkList[randomDrink][0]
         drinkImage.src = finalDrinkList[randomDrink][1]
     }
-    console.log('div 3 ' + div3.innerText)
- 
-    let obj = []
     drinkInstructions(finalDrinkList,div3)
-    // for (const drink of finalDrinkList) {
-    //     fetch(`https:www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${drink[2]}`)
-    //     .then(resp => resp.json())
-    //     .then((details) => {
-    //         for (const detail of Object.values(details)){
-    //             for (const d of detail) {
-    //                 console.log(d)
-    //                 console.log(d.strDrink)
-    //                 if (d.strDrink === 'Mojito') {
-    //                     console.log('Yes!')
-    //                     let description = document.createElement('p')
-    //                     description.innerText = d.strInstructions
-    //                     p.appendChild(description)
-    //                 }
-    //             }
-
-    //         }
-    //     })
-    // }
-    console.log(obj)
     p.appendChild(drinkImage)
 }
 
