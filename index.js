@@ -16,9 +16,9 @@ let label4 = document.querySelector('label[for="input4"]')
 
 let userAnswers = []
 
-const questionArray = ['How stressful was your day?', 'Do you have to get up early tomorrow?', 'Are you celebrating anything?', 'What are you in the mood to do?']
-const option1Array = ['Very', 'Yes', 'Yes', 'Relax']
-const option2Array = ['Somewhat', 'No', 'No', 'Party!']
+const questionArray = ['Is it the weekend?', 'Do you have to get up early tomorrow?', 'Are you celebrating anything?', 'What are you in the mood to do?']
+const option1Array = ['Yes', 'Yes', 'Yes', 'Relax']
+const option2Array = ['No', 'No', 'No', 'Party!']
 const option3Array = ['Not at all',]
 const option4Array = ['Monday-Thursday',]
 const radioButtons = document.querySelectorAll("input[name='q1']")
@@ -46,13 +46,10 @@ function changeQuestion(data) {
             label1.innerHTML = `${option1Array[newIndex]}`
             label2.innerHTML = `${option2Array[newIndex]}`
             if (newIndex === 0) {
-                option4.hidden=true
-            }
-            if (newIndex === 1) {
                 option3.hidden=true
+                
             }
             label3.innerHTML = `${option3Array[newIndex]}`
-            label4.innerHTML = `${option4Array[newIndex]}`
             for (const radio of radioButtons) {
                 if (radio.checked) {
                     userAnswers.push(radio.value)
@@ -65,9 +62,9 @@ function changeQuestion(data) {
                 option1.hidden=true
                 option2.hidden=true
                 option3.hidden=true
-                option4.hidden=true
                 button.hidden=true
                 showResult(data)
+                userData(userAnswers)
             }
             }
         else {
@@ -88,14 +85,11 @@ function radioCheck() {
 }
 
 function showResult(data) {
-    console.log(data)
     let drinkList = []
     let drinkArray = Object.values(data)
-    console.log(drinkArray)
     for (const drink of drinkArray) {
         console.log(drink)
         for (const d of drink) {
-            console.log(d)
             let drinkData = Object.values(d)
             drinkList.push(drinkData)
         }
@@ -108,6 +102,15 @@ function showResult(data) {
     p.appendChild(drinkImage)
 }
 
+function userData(array) {
+    console.log(array)
+    let first = array[0]
+    let second = array[1]
+    let third = array[2]
+    let fourth = array[3]
+    let fifth = array[4]
+    console.log(first)
+}
 
 
 function startQuiz() {
@@ -116,7 +119,7 @@ function startQuiz() {
         option1.hidden=false
         option2.hidden=false
         option3.hidden=false
-        option4.hidden=false
+        //option4.hidden=false
         button.hidden=false
         startButton.hidden=true
     })
