@@ -5,6 +5,7 @@ const option2 = document.getElementById('option2')
 const option3 = document.getElementById('option3')
 const button = document.getElementById('submit')
 const startButton = document.getElementById('h1-button')
+const div1 = document.getElementById('div1')
 const div3 = document.getElementById('div3')
 const p = document.getElementById('p')
 let errorMessage = document.getElementById('error')
@@ -58,6 +59,7 @@ function changeQuestion(data) {
                 option2.hidden=true
                 option3.hidden=true
                 button.hidden=true
+                div1.innerText='Comin\' right up!'
                 showResult(data, userAnswers)
             }
             }
