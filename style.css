@@ -38,8 +38,9 @@ button:hover {
 
 #div1 {
     font-size: 4ch;
-    padding-top: 50px;
+    padding-top: 30px;
     font-weight: bolder;
+    background-size: 300px;
 }
 
 p.error {

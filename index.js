@@ -63,8 +63,8 @@ function changeQuestion(data) {
                 option2.hidden=true
                 option3.hidden=true
                 button.hidden=true
-                showResult(data)
-                userData(userAnswers)
+                showResult(data, userAnswers)
+                //userData(userAnswers)
             }
             }
         else {
@@ -84,7 +84,7 @@ function radioCheck() {
     }
 }
 
-function showResult(data) {
+function showResult(data, answersArray) {
     let drinkList = []
     let drinkArray = Object.values(data)
     for (const drink of drinkArray) {
@@ -95,12 +95,33 @@ function showResult(data) {
         }
     }
     let newDrinkList = [...new Set(drinkList)]
-    console.log(newDrinkList[0][0])
-    div3.innerText = newDrinkList[0][0]
+    let finalDrinkList = newDrinkList.slice(52)
+    console.log(finalDrinkList)
+    for (const drink of finalDrinkList) {
+        console.log(drink)
+    }
+    console.log(answersArray)
+    if (answersArray)
+    console.log(finalDrinkList[0][0])
+    div3.innerText = finalDrinkList[0][0]
     let drinkImage = document.createElement('img')
-    drinkImage.src = newDrinkList[0][1]
+    drinkImage.src = finalDrinkList[0][1]
     p.appendChild(drinkImage)
 }
+
+
+
+function startQuiz() {
+    startButton.addEventListener('click', () => {
+        question.hidden=false
+        option1.hidden=false
+        option2.hidden=false
+        option3.hidden=false
+        button.hidden=false
+        startButton.hidden=true
+    })
+}
+
 
 function userData(array) {
     console.log(array)
@@ -111,21 +132,6 @@ function userData(array) {
     let fifth = array[4]
     console.log(first)
 }
-
-
-function startQuiz() {
-    startButton.addEventListener('click', () => {
-        question.hidden=false
-        option1.hidden=false
-        option2.hidden=false
-        option3.hidden=false
-        //option4.hidden=false
-        button.hidden=false
-        startButton.hidden=true
-    })
-}
-
-
 
 randomCocktail()
 startQuiz()
