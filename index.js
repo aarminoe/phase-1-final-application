@@ -126,15 +126,5 @@ function startQuiz() {
 }
 
 
-// function userData(array) {
-//     console.log(array)
-//     let first = array[0]
-//     let second = array[1]
-//     let third = array[2]
-//     let fourth = array[3]
-//     let fifth = array[4]
-//     console.log(first)
-// }
-
 randomCocktail()
 startQuiz()
