@@ -3,7 +3,6 @@ const question = document.getElementById('question')
 const option1 = document.getElementById('option1')
 const option2 = document.getElementById('option2')
 const option3 = document.getElementById('option3')
-const option4 = document.getElementById('option4')
 const button = document.getElementById('submit')
 const startButton = document.getElementById('h1-button')
 const div3 = document.getElementById('div3')
@@ -12,16 +11,13 @@ let errorMessage = document.getElementById('error')
 let label1 = document.querySelector('label[for="input1"]')
 let label2 = document.querySelector('label[for="input2"]')
 let label3 = document.querySelector('label[for="input3"]')
-let label4 = document.querySelector('label[for="input4"]')
-
-let userAnswers = []
-
 const questionArray = ['Is it the weekend?', 'Do you have to get up early tomorrow?', 'Are you celebrating anything?', 'What are you in the mood to do?']
 const option1Array = ['Yes', 'Yes', 'Yes', 'Relax']
 const option2Array = ['No', 'No', 'No', 'Party!']
 const option3Array = ['Not at all',]
 const option4Array = ['Monday-Thursday',]
 const radioButtons = document.querySelectorAll("input[name='q1']")
+let userAnswers = []
 console.log(radioButtons)
 
 
@@ -64,7 +60,6 @@ function changeQuestion(data) {
                 option3.hidden=true
                 button.hidden=true
                 showResult(data, userAnswers)
-                //userData(userAnswers)
             }
             }
         else {
@@ -73,7 +68,7 @@ function changeQuestion(data) {
                 errorMessage.hidden=false
             }
         }
-            })
+    })
 }
 
 function radioCheck() {
@@ -95,17 +90,25 @@ function showResult(data, answersArray) {
         }
     }
     let newDrinkList = [...new Set(drinkList)]
-    let finalDrinkList = newDrinkList.slice(52)
+    let finalDrinkList = newDrinkList.slice(76)
     console.log(finalDrinkList)
     for (const drink of finalDrinkList) {
-        console.log(drink)
     }
     console.log(answersArray)
-    if (answersArray)
-    console.log(finalDrinkList[0][0])
-    div3.innerText = finalDrinkList[0][0]
     let drinkImage = document.createElement('img')
-    drinkImage.src = finalDrinkList[0][1]
+    if (answersArray[4] === '2') {
+        div3.innerText = finalDrinkList[21][0]
+        drinkImage.src = finalDrinkList[21][1]
+    }
+    else if (answersArray[3] === '2' && answersArray[4] === '1') {
+        div3.innerText = finalDrinkList[19][0]
+        drinkImage.src = finalDrinkList[19][1]
+    }
+    else {
+        let randomDrink = Math.floor(Math.random()*finalDrinkList.length)
+        div3.innerText = finalDrinkList[randomDrink][0]
+        drinkImage.src = finalDrinkList[randomDrink][1]
+    }
     p.appendChild(drinkImage)
 }
 
@@ -123,15 +126,15 @@ function startQuiz() {
 }
 
 
-function userData(array) {
-    console.log(array)
-    let first = array[0]
-    let second = array[1]
-    let third = array[2]
-    let fourth = array[3]
-    let fifth = array[4]
-    console.log(first)
-}
+// function userData(array) {
+//     console.log(array)
+//     let first = array[0]
+//     let second = array[1]
+//     let third = array[2]
+//     let fourth = array[3]
+//     let fifth = array[4]
+//     console.log(first)
+// }
 
 randomCocktail()
 startQuiz()
