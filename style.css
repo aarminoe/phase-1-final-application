@@ -46,3 +46,7 @@ button:hover {
 p.error {
     color: rgb(189, 51, 51);
 }
+
+#div4 {
+    height: 50px;
+}
