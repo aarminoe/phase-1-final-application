@@ -20,7 +20,8 @@ const option3Array = ['Not at all',]
 const option4Array = ['Monday-Thursday',]
 const radioButtons = document.querySelectorAll("input[name='q1']")
 let userAnswers = []
-
+let newIndex
+let questionNumber
 
 function randomCocktail() {
     fetch('https:www.thecocktaildb.com/api/json/v1/1/filter.php?c=Cocktail')
@@ -30,8 +31,8 @@ function randomCocktail() {
 
 function changeQuestion(data) {
     console.log(data)
-    let newIndex = -1
-    let questionNumber = 1
+    newIndex = -1
+    questionNumber = 1
     button.addEventListener('click', (e) => {
         e.preventDefault()
         radioCheck()
@@ -97,6 +98,7 @@ function showResult(data, answersArray) {
     let drinkDescriptions = []
     console.log(drinkDescriptions)
     let drinkImage = document.createElement('img')
+    //Drinks are picked at random as of now
     if (answersArray[4] === '5') {
         div3.innerText = finalDrinkList[21][0]
         drinkImage.src = finalDrinkList[21][1]
@@ -138,6 +140,11 @@ function drinkInstructions (finalDrinkList, div3) {
     }
 }
 
+function restart() {
+    restartButton.addEventListener('click', () => {
+    })
+}
+
 function startQuiz() {
     startButton.addEventListener('click', () => {
         question.hidden=false
@@ -152,3 +159,4 @@ function startQuiz() {
 
 randomCocktail()
 startQuiz()
+restart()
