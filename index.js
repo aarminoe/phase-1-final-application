@@ -93,16 +93,26 @@ function showResult(data, answersArray) {
             drinkList.push(drinkData)
         }
     }
-    //----------- Here I could slice the list in order to make a smaller list to choose from
-    //----------- I would do this depending on the amount of questions asked, in order to match the 
-    //----------- answer combinations with the resulting drink
-    let finalDrinkList = drinkList.slice(1)
     let drinkImage = document.createElement('img')
-    //----------- Drinks are picked at random as of now
-    let randomDrink = Math.floor(Math.random()*finalDrinkList.length)
-    div3.innerText = finalDrinkList[randomDrink][0]
-    drinkImage.src = finalDrinkList[randomDrink][1]
-    drinkInstructions(finalDrinkList,div3)
+    if (answersArray[0] === '1' && answersArray[4] === '1') {
+        console.log(drinkList[75])
+        let relaxDrinks = [drinkList[21], drinkList[31], drinkList[37], drinkList[49], drinkList[54], drinkList[55], drinkList[70], drinkList[75], drinkList[78], drinkList[84], drinkList[89], drinkList[94], drinkList[95],drinkList[97], drinkList[98]]
+        let randomRelax = Math.floor(Math.random()*relaxDrinks.length)
+        div3.innerText = relaxDrinks[randomRelax][0]
+        drinkImage.src = relaxDrinks[randomRelax][1]
+    }
+    else if (answersArray[0] === '3' && answersArray[4] === '2') {
+        let partyDrinks = [drinkList[5], drinkList[9], drinkList[17], drinkList[22], drinkList[26], drinkList[35], drinkList[36], drinkList[43], drinkList[46], drinkList[50], drinkList[51], drinkList[63], drinkList[83], drinkList[87], drinkList[91]]
+        let randomParty = Math.floor(Math.random()*partyDrinks.length)
+        div3.innerText = partyDrinks[randomParty][0]
+        drinkImage.src = partyDrinks[randomParty][1]
+    }
+    else {
+        let randomDrink = Math.floor(Math.random()*drinkList.length)
+        div3.innerText = drinkList[randomDrink][0]
+        drinkImage.src = drinkList[randomDrink][1]
+    }
+    drinkInstructions(drinkList,div3)
     p.appendChild(drinkImage)
 }
 
@@ -114,9 +124,7 @@ function drinkInstructions (finalDrinkList, div3) {
         .then((details) => {
             //------detail is an object within an array, iterating through that will give you 'd' which is the object we can use
             for (const detail of Object.values(details)){
-                console.log(detail)
                 for (const d of detail) {
-                    console.log(d)
                     if (d.strDrink === div3.innerText) {
                         let description = document.createElement('p')
                         description.innerText = d.strInstructions
