@@ -43,11 +43,10 @@ function changeQuestion(data) {
             question.innerHTML = `${questionNumber.toString()}. ${questionArray[newIndex]}`
             label1.innerHTML = `${option1Array[newIndex]}`
             label2.innerHTML = `${option2Array[newIndex]}`
+            label3.innerHTML = `${option3Array[newIndex]}`
             if (newIndex === 0) {
                 option3.hidden=true
-                
             }
-            label3.innerHTML = `${option3Array[newIndex]}`
             for (const radio of radioButtons) {
                 if (radio.checked) {
                     userAnswers.push(radio.value)
@@ -62,8 +61,8 @@ function changeQuestion(data) {
                 option3.hidden=true
                 button.hidden=true
                 div1.innerText='Comin\' right up!'
-                showResult(data, userAnswers)
                 restartButton.hidden=false
+                showResult(data, userAnswers)
             }
             }
         else {
@@ -92,26 +91,16 @@ function showResult(data, answersArray) {
             drinkList.push(drinkData)
         }
     }
-    let newDrinkList = [...new Set(drinkList)]
-    let finalDrinkList = newDrinkList.slice(76)
-    console.log(answersArray)
-    let drinkDescriptions = []
-    console.log(drinkDescriptions)
+    //let newDrinkList = [...new Set(drinkList)]
+    //----------- Here I could slice the list in order to make a smaller list to choose from
+    //----------- I would do this depending on the amount of questions asked, in order to match the 
+    //----------- answer combinations with the resulting drink
+    let finalDrinkList = drinkList.slice(1)
     let drinkImage = document.createElement('img')
-    //Drinks are picked at random as of now
-    if (answersArray[4] === '5') {
-        div3.innerText = finalDrinkList[21][0]
-        drinkImage.src = finalDrinkList[21][1]
-    }
-    else if (answersArray[3] === '10' && answersArray[4] === '1') {
-        div3.innerText = finalDrinkList[19][0]
-        drinkImage.src = finalDrinkList[19][1]
-    }
-    else {
-        let randomDrink = Math.floor(Math.random()*finalDrinkList.length)
-        div3.innerText = finalDrinkList[randomDrink][0]
-        drinkImage.src = finalDrinkList[randomDrink][1]
-    }
+    //----------- Drinks are picked at random as of now
+    let randomDrink = Math.floor(Math.random()*finalDrinkList.length)
+    div3.innerText = finalDrinkList[randomDrink][0]
+    drinkImage.src = finalDrinkList[randomDrink][1]
     drinkInstructions(finalDrinkList,div3)
     p.appendChild(drinkImage)
 }
@@ -124,11 +113,7 @@ function drinkInstructions (finalDrinkList, div3) {
         .then((details) => {
             for (const detail of Object.values(details)){
                 for (const d of detail) {
-                    console.log(d)
-                    console.log(d.strDrink)
-                    console.log(div3.innerText)
                     if (d.strDrink === div3.innerText) {
-                        console.log('Yes!')
                         let description = document.createElement('p')
                         description.innerText = d.strInstructions
                         p.appendChild(description)
