@@ -16,8 +16,6 @@ let label3 = document.querySelector('label[for="input3"]')
 const questionArray = ['Is it the weekend?', 'Do you have to get up early tomorrow?', 'Are you celebrating anything?', 'What are you in the mood to do?']
 const option1Array = ['Yes', 'Yes', 'Yes', 'Relax']
 const option2Array = ['No', 'No', 'No', 'Party!']
-//const option3Array = ['Not at all',]
-//const option4Array = ['Monday-Thursday',]
 const radioButtons = document.querySelectorAll("input[name='q1']")
 let userAnswers = []
 let newIndex
@@ -85,10 +83,8 @@ function showResult(data, answersArray) {
     let drinkArray = Object.values(data)
     for (const drink of drinkArray) {
         //----drink is an array full of objects using the object.values function to make it an array
-        console.log((drink))
         //-----d is each individual object of that array
         for (const d of drink) {
-            console.log(d)
             let drinkData = Object.values(d)
             drinkList.push(drinkData)
         }
