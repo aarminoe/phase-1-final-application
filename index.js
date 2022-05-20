@@ -7,6 +7,7 @@ const button = document.getElementById('submit')
 const startButton = document.getElementById('h1-button')
 const div1 = document.getElementById('div1')
 const div3 = document.getElementById('div3')
+const restartButton = document.getElementById('restart')
 const p = document.getElementById('p')
 let errorMessage = document.getElementById('error')
 let label1 = document.querySelector('label[for="input1"]')
@@ -61,6 +62,7 @@ function changeQuestion(data) {
                 button.hidden=true
                 div1.innerText='Comin\' right up!'
                 showResult(data, userAnswers)
+                restartButton.hidden=false
             }
             }
         else {
@@ -95,11 +97,11 @@ function showResult(data, answersArray) {
     let drinkDescriptions = []
     console.log(drinkDescriptions)
     let drinkImage = document.createElement('img')
-    if (answersArray[4] === '2') {
+    if (answersArray[4] === '5') {
         div3.innerText = finalDrinkList[21][0]
         drinkImage.src = finalDrinkList[21][1]
     }
-    else if (answersArray[3] === '2' && answersArray[4] === '1') {
+    else if (answersArray[3] === '10' && answersArray[4] === '1') {
         div3.innerText = finalDrinkList[19][0]
         drinkImage.src = finalDrinkList[19][1]
     }
