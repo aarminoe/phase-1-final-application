@@ -20,7 +20,9 @@ const radioButtons = document.querySelectorAll("input[name='q1']")
 let userAnswers = []
 let newIndex
 let questionNumber
+let description
 
+document.addEventListener('DOMContentLoaded', startQuiz())
 function randomCocktail() {
     fetch('https:www.thecocktaildb.com/api/json/v1/1/filter.php?c=Cocktail')
     .then(resp => resp.json())
@@ -80,18 +82,19 @@ function radioCheck() {
 
 function showResult(data, answersArray) {
     let drinkList = []
+    console.log(data)
     let drinkArray = Object.values(data)
     for (const drink of drinkArray) {
-        //----drink is an array full of objects using the object.values function to make it an array
-        //-----d is each individual object of that array
+        console.log(drink)
         for (const d of drink) {
+            console.log(d)
             let drinkData = Object.values(d)
+            console.log(drinkData)
             drinkList.push(drinkData)
         }
     }
     let drinkImage = document.createElement('img')
     if (answersArray[0] === '1' && answersArray[4] === '1') {
-        console.log(drinkList[75])
         let relaxDrinks = [drinkList[21], drinkList[31], drinkList[37], drinkList[49], drinkList[54], drinkList[55], drinkList[70], drinkList[75], drinkList[78], drinkList[84], drinkList[89], drinkList[94], drinkList[95],drinkList[97], drinkList[98]]
         let randomRelax = Math.floor(Math.random()*relaxDrinks.length)
         div3.innerText = relaxDrinks[randomRelax][0]
@@ -108,29 +111,32 @@ function showResult(data, answersArray) {
         div3.innerText = drinkList[randomDrink][0]
         drinkImage.src = drinkList[randomDrink][1]
     }
-    drinkInstructions(drinkList,div3)
     p.appendChild(drinkImage)
+    drinkInstructions(drinkList,div3)
 }
 
 
 function drinkInstructions (finalDrinkList, div3) {
-    for (const drink of finalDrinkList) {
+    finalDrinkList.forEach((drink) => {
         fetch(`https:www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${drink[2]}`)
         .then(resp => resp.json())
         .then((details) => {
-            //------detail is an object within an array, iterating through that will give you 'd' which is the object we can use
             for (const detail of Object.values(details)){
+                console.log(detail)
                 for (const d of detail) {
+                    console.log(d)
                     if (d.strDrink === div3.innerText) {
                         let description = document.createElement('p')
+                        description.hidden = false
                         description.innerText = d.strInstructions
+
                         p.appendChild(description)
                     }
                 }
-
             }
         })
-    }
+    }) 
+    restart()
 }
 
 function restart() {
@@ -139,6 +145,8 @@ function restart() {
 }
 
 function startQuiz() {
+    startButton.addEventListener('mouseover', () => startButton.innerText = 'Go!')
+    startButton.addEventListener('mouseout', () => startButton.innerText = 'Start')
     startButton.addEventListener('click', () => {
         question.hidden=false
         option1.hidden=false
@@ -151,5 +159,3 @@ function startQuiz() {
 
 
 randomCocktail()
-startQuiz()
-restart()
