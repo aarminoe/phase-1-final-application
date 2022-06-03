@@ -82,14 +82,10 @@ function radioCheck() {
 
 function showResult(data, answersArray) {
     let drinkList = []
-    console.log(data)
     let drinkArray = Object.values(data)
     for (const drink of drinkArray) {
-        console.log(drink)
         for (const d of drink) {
-            console.log(d)
             let drinkData = Object.values(d)
-            console.log(drinkData)
             drinkList.push(drinkData)
         }
     }
@@ -116,20 +112,18 @@ function showResult(data, answersArray) {
 }
 
 
+
 function drinkInstructions (finalDrinkList, div3) {
     finalDrinkList.forEach((drink) => {
         fetch(`https:www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${drink[2]}`)
         .then(resp => resp.json())
         .then((details) => {
             for (const detail of Object.values(details)){
-                console.log(detail)
                 for (const d of detail) {
-                    console.log(d)
                     if (d.strDrink === div3.innerText) {
                         let description = document.createElement('p')
                         description.hidden = false
                         description.innerText = d.strInstructions
-
                         p.appendChild(description)
                     }
                 }
@@ -140,7 +134,7 @@ function drinkInstructions (finalDrinkList, div3) {
 }
 
 function restart() {
-    restartButton.addEventListener('click', () => {
+    restartButton.addEventListener('submit', () => {
     })
 }
 
@@ -156,6 +150,7 @@ function startQuiz() {
         startButton.hidden=true
     })
 }
+
 
 
 randomCocktail()
