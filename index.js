@@ -8,6 +8,8 @@ const startButton = document.getElementById('h1-button')
 const div1 = document.getElementById('div1')
 const div3 = document.getElementById('div3')
 const restartButton = document.getElementById('restart')
+const seeAllButton = document.getElementById('see-all')
+const allDrinkList = document.getElementById('all-drink-list')
 const p = document.getElementById('p')
 let errorMessage = document.getElementById('error')
 let label1 = document.querySelector('label[for="input1"]')
@@ -60,6 +62,7 @@ function changeQuestion(data) {
                 nextButton.hidden=true
                 div1.innerText='Comin\' right up!'
                 restartButton.hidden=false
+                seeAllButton.hidden=false
                 showResult(data, userAnswers)
             }
             }
@@ -131,6 +134,23 @@ function drinkInstructions (finalDrinkList, div3) {
         })
     }) 
     restart()
+    seeAll(finalDrinkList)
+}
+
+function seeAll(finalDrinkList) {
+    document.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            console.log(finalDrinkList)
+            let drinkList = document.createElement('ul')
+            finalDrinkList.map((drink) => {
+                let drinkListed = document.createElement('p')
+                drinkListed.innerText = drink[0]
+                drinkList.appendChild(drinkListed)
+            })
+            allDrinkList.appendChild(drinkList)
+            allDrinkList.hidden = false
+        }
+    })
 }
 
 function restart() {

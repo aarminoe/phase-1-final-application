@@ -53,3 +53,12 @@ p.error {
 #restart {
     width: 200px;
 }
+
+#all-drink-list {
+    margin: auto;
+    height: 500px;
+    padding-top: 70px;
+    font-size: medium;
+    color: rgb(189, 51, 51);
+    top: 40px;
+}
